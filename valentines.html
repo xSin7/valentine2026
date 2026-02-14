@@ -42,6 +42,43 @@ button {
   animation: float 5s linear infinite;
 }
 
+#endingOverlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-size:40px;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:1s;
+}
+
+#endingOverlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+#endingText{
+  max-width:80%;
+  text-align:center;
+}
+
+.findHeart{
+  position:fixed;
+  font-size:40px;
+  cursor:pointer;
+  z-index:1000;
+}
+
+
 @keyframes float {
   from { transform: translateY(100vh); }
   to { transform: translateY(-10vh); }
@@ -50,20 +87,22 @@ button {
 </head>
 
 <body>
-
+  <audio id="bgMusic" loop>
+  <source src="Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3" type="audio/mpeg">
+</audio>
 <section>
   <h1>Happy Valentine's Day Stink ❤️</h1>
   <p>By Stinky.</p>
-  <button onclick="scrollToNext()">❤️</button>
+  <button onclick="startExperience()">❤️</button>
 </section>
 
-<section>
-  <h1>What is us this year</h1>
-    <button onclick="scrollToNext()">❤️</button>
-  <p></p>
-</section>
+
+
+
+
 
 <section>
+  <h1>What is us this year so far?</h1>
   <h1>Top 3 Games</h1>
     <button onclick="scrollToNext()">❤️</button>
   <p></p>
@@ -112,21 +151,154 @@ button {
   <p></p>
 </section>
 
-<section>
-  <h1>Message for You</h1>
+
+<section id="heartSection">
+  <h1>Brought to you by...</h1>
   <p>BADDD BOUNNYYYY</p>
-  <img src="bunny_smirk.jpg" alt="ban bounny" />
+  <img src="bunny_smirk.jpg" alt="badbounny" />
+  <p> <strong>TOGETHER WE ARE AMERICA</strong></p>
+  <p>Find 10 hearts to unlock the ending ❤️</p>
+  <p id="counter">0 / 10</p>
 </section>
 
-<section>
+
+<div id="endingOverlay">
+  <div id="endingText"></div>
+</div>
+
+<!-- <section id="finalSection">
   <h1>Happy Valentines</h1>
   <p>I love you ❤️ Sorry, maybe this isnt something you expected. I put a lot of effort into making those minecraft builds. Those dispensers were not cheap. I know it doesnt seem a lot, it took a lot of time for me :(. But Happy Valentines Day my love. I was hoping we could maybeee watch a movie for our little date. That picnic area i built on minecraft was where we could be eating food togetherrr. Watchin the sunset in da minecraft world since we have been playing a lot. I sorry i got excited and showed you da area first, i wanted it to be a surprised. Im not sure if you remember but I sent you tiktok a long time ago and you built me that heart in minecraft so i thought that it is my turn this time, and no i did NOT use creative eheghegeg. This is just the beginning of this year. We will make more memories this year egege. March, your birthday, Halloween and Christmas. AND EASTA. Send some pictas please because i seemed to have lost them... da screenshots i nono where t\hey go i upset i upset. ONce again happy valentines my stink. </p>
-</section>
+</section> -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 
 <script>
+
+let started=false;
+
+function startExperience(){
+  if(!started){
+    const music=document.getElementById("bgMusic");
+    music.volume=0;
+    music.play();
+
+    let v=0;
+    const fade=setInterval(()=>{
+      if(v<0.6){
+        v+=0.02;
+        music.volume=v;
+      } else clearInterval(fade);
+    },100);
+
+    started=true;
+  }
+
+  scrollToNext();
+}
+
 function scrollToNext() {
   window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
 }
+
+function unlockFinal() {
+  const overlay = document.getElementById("endingOverlay");
+  const textEl = document.getElementById("endingText");
+  const music = document.getElementById("bgMusic");
+
+  overlay.classList.add("show");
+
+  // music swell
+  let v = music.volume;
+  const swell = setInterval(()=>{
+    if(v < 1){
+      v += 0.05;
+      music.volume = v;
+    } else clearInterval(swell);
+  },200);
+
+  const message = "I love you ❤️ Sorry, maybe this isnt something you expected. I put a lot of effort into making those minecraft builds. Those dispensers were not cheap. I know it doesnt seem a lot, it took a lot of time for me :(. But Happy Valentines Day my love. I was hoping we could maybeee watch a movie for our little date. That picnic area i built on minecraft was where we could be eating food togetherrr. Watchin the sunset in da minecraft world since we have been playing a lot. I sorry i got excited and showed you da area first, i wanted it to be a surprised. Im not sure if you remember but I sent you tiktok a long time ago and you built me that heart in minecraft so i thought that it is my turn this time, and no i did NOT use creative eheghegeg. This is just the beginning of this year. We will make more memories this year egege. March, your birthday, Halloween and Christmas. AND EASTA. Send some pictas please because i seemed to have lost them... da screenshots i nono where t\hey go i upset i upset. ONce again happy valentines my stink.I hope to celebrate more more valentines with you, many more birthdays and many more celebratory days. I LOVE LOVE LVOEEE you SOOOOOOO MUCHHH AND I MISS YOU MY SITNKY. WAKE UP!!! ";
+  let i = 0;
+
+  function type(){
+    if(i < message.length){
+      textEl.innerHTML += message[i];
+      i++;
+      setTimeout(type,50);
+    } else {
+      setTimeout(finale,1200);
+    }
+  }
+
+  type();
+}
+
+function finale(){
+  confetti({
+    particleCount:200,
+    spread:120,
+    origin:{ y:0.6 }
+  });
+
+  setTimeout(()=>{
+    document.getElementById("finalSection").scrollIntoView({
+      behavior:"smooth"
+    });
+
+    document.getElementById("endingOverlay").classList.remove("show");
+  },2000);
+}
+
+let heartsFound = 0;
+const totalHearts = 10;
+let gameStarted = false;
+
+// detect when bunny section is visible
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && entry.target.id==="heartSection"){
+      startHeartGame();
+    }
+  });
+});
+
+observer.observe(document.getElementById("heartSection"));
+
+function startHeartGame(){
+  if(gameStarted) return;
+  gameStarted = true;
+  spawnHeart();
+}
+
+function spawnHeart(){
+  if(heartsFound >= totalHearts) return;
+
+  const heart = document.createElement("div");
+  heart.className="findHeart";
+  heart.innerHTML="❤️";
+
+  heart.style.left = Math.random()*90+"vw";
+  heart.style.top = Math.random()*80+"vh";
+
+  heart.onclick=()=>{
+    heart.remove();
+    heartsFound++;
+
+    document.getElementById("counter").innerText =
+      heartsFound + " / " + totalHearts;
+
+    if(heartsFound < totalHearts){
+      spawnHeart();
+    } else {
+      unlockFinal();
+    }
+  };
+
+  document.body.appendChild(heart);
+}
+
 
 // floating hearts
 setInterval(() => {
