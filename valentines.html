@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffe6f0;
+  color: #333;
+  text-align: center;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border: none;
+  background: hotpink;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.heart {
+  position: fixed;
+  color: red;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <h1>Happy Valentine's Day Stink ❤️</h1>
+  <p>By Stinky.</p>
+  <button onclick="scrollToNext()">❤️</button>
+</section>
+
+<section>
+  <h1>What is us this year</h1>
+    <button onclick="scrollToNext()">❤️</button>
+  <p></p>
+</section>
+
+<section>
+  <h1>Top 3 Games</h1>
+    <button onclick="scrollToNext()">❤️</button>
+  <p></p>
+</section>
+
+<section>
+  <h1>Top 3 Roblox</h1>
+  <h2>S.A.B</h2>
+  <text>This is your longlasting game, that you will forever play and we will always come back to. This is whats gotten her through the tough times for exam. This game has brough us many admin abuses, Sini getting waking up early for admin abuse. Sini staying up late to do admin aboose with neena. This game will forever be first in Neena heart. Many memories such as those times we got angry, sini upset that she couldnt steal, neena upset at sini because she got her stuff stolen whilst she was leaving. Trait farming for things on aa, getting rare things on wetlimez and neena wanting to join to show me after aboose is all very cute, very adorable.</text>
+  <h2>P.V.B</h2>
+  <text>An unexpected but expected number 2. We someone got into this game and played for quiet a while. Sini was also woken up early for da admin aboose, but it was mostly late night for sini. This game was fun while it lasted. Many memories most recently when we played with the new witch's potion. Getting excited when we get good plants, remember when we started off and we got some brainrots, we were like damnnn theyre so rich, Then we became rich ourselves and thought back to how they basically gave us pretty bad stuff compared to what we were giving the new people. Alast they did help us out in a way. So we will be forever thankful to them. Neena said neena wanna go back and plant the seeds soon too, not sure if you still remember but we should revisit soon.</text>
+  <h3>Grow a Garden</h3>
+  <text>Grow a Garden - this is an interesting one, because first i had put 99 nights but then when i think about it we have so much more memories on GAG. The first ever concert we attended together being on GAG, "glass animals" and the girnd we putinto this game, the scam we were trying to pull. And that giveaway that i won. OMG we also spent our first robux together stealing burning buds. ELEKEKKEKE</text>
+  <h4>Honourable Mentions</h4>
+  <ul>
+    <li>99 Nights - Getting to meet patrick</li>
+    <li>Garden Tower Defence - Neena liked it and grinded it eggegegege </li>
+    <li>Scary Shawarma Kiosk - Neena really liked this and even went back a third time </li>
+    <li>Merge and Fight - like Garden Tower</li>
+    <li>Racket Rivals/Sharp - Sini games and neena joined sini. Sini happy</li>
+  </ul>
+    <picture>
+      <img src="roblox.jpg" alt="Us matching on PvB" />
+    </picture>
+    <button onclick="scrollToNext()">❤️</button>
+  <p></p>
+</section>
+
+<section>
+  <h1>Minecraft</h1>
+    <picture>
+      <img src="minecraft.png" alt="Minecraft" />
+    </picture>
+    <text>Although this is something that we have just started, (revisted) I am very happy to be in this minecraft phase with you right now. P.S We should build more cute things</text>
+    <button onclick="scrollToNext()">❤️</button>
+  <p></p>
+</section>
+
+<section>
+  <h1>Fortnite</h1>
+    <picture>
+      <img src="fortnite.jpg" alt="Fortnite" />
+    </picture>
+    <text>The first every game that we played together. Will always go back to play. Drunk fortnite  ekekekeke. It shall be revisitted soon, much Love. Sini </text>
+    <button onclick="scrollToNext()">❤️</button>
+  <p></p>
+</section>
+
+<section>
+  <h1>Message for You</h1>
+  <p>BADDD BOUNNYYYY</p>
+  <img src="bunny_smirk.jpg" alt="ban bounny" />
+</section>
+
+<section>
+  <h1>Happy Valentines</h1>
+  <p>I love you ❤️ Sorry, maybe this isnt something you expected. I put a lot of effort into making those minecraft builds. Those dispensers were not cheap. I know it doesnt seem a lot, it took a lot of time for me :(. But Happy Valentines Day my love. I was hoping we could maybeee watch a movie for our little date. That picnic area i built on minecraft was where we could be eating food togetherrr. Watchin the sunset in da minecraft world since we have been playing a lot. I sorry i got excited and showed you da area first, i wanted it to be a surprised. Im not sure if you remember but I sent you tiktok a long time ago and you built me that heart in minecraft so i thought that it is my turn this time, and no i did NOT use creative eheghegeg. This is just the beginning of this year. We will make more memories this year egege. March, your birthday, Halloween and Christmas. AND EASTA. Send some pictas please because i seemed to have lost them... da screenshots i nono where t\hey go i upset i upset. ONce again happy valentines my stink. </p>
+</section>
+
+<script>
+function scrollToNext() {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+}
+
+// floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.innerHTML = "❤️";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}, 300);
+</script>
+
+</body>
+</html>
